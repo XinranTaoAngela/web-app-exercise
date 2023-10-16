@@ -12,7 +12,7 @@ token = os.environ.get("password")
 uri = "mongodb+srv://lnb337:" + token + "@cluster0-stuy.5kw8pxw.mongodb.net/?retryWrites=true&w=majority"
 
 # Create a new client and connect to the server
-client = MongoClient(uri)
+client = MongoClient(uri, tls=True, tlsAllowInvalidCertificates=True)
 
 # Send a ping to confirm a successful connection
 try:
