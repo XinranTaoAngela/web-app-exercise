@@ -17,10 +17,6 @@ recommendations = [
 def home():
     return render_template('home.html', plans=plans)
 
-<<<<<<< HEAD:database.py
-# Create a new client and connect to the server
-client = MongoClient(uri, tls=True, tlsAllowInvalidCertificates=True)
-=======
 @app.route('/create-plan', methods=['GET', 'POST'])
 def create_plan():
     if request.method == 'POST':
@@ -33,7 +29,6 @@ def create_plan():
         })
         return redirect(url_for('home'))
     return render_template('create_plan.html')
->>>>>>> 8a68590b0d33b5442a96dd0200ce58fa61838596:app.py
 
 @app.route('/edit-plan/<int:plan_id>', methods=['GET', 'POST'])
 def edit_plan(plan_id):
