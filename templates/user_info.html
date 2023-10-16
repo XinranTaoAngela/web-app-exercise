@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>User Information</h1>
+
+    <a href="{{ url_for('user_info') }}" class="user-info-button">User Info</a>
+
+    <!-- Display user information here. Placeholder for now. -->
+    <p>Placeholder for user information.</p>
+
+    <div class="bottom-buttons">
+        <a class="button" href="{{ url_for('home') }}">My Plans</a>
+        <a class="button" href="{{ url_for('create_plan') }}">Create a Plan</a>
+        <a class="button" href="{{ url_for('recommendations_page') }}">Recommended Plans</a>
+    </div>
+</body>
+</html>

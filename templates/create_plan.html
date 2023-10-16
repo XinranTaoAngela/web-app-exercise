@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Plan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Create a New Plan</h1>
+
+    <a href="{{ url_for('user_info') }}" class="user-info-button">User Info</a>
+
+    <form action="{{ url_for('create_plan') }}" method="post">
+        Plan Name: <input type="text" name="plan_name" required><br>
+        Dates: <input type="text" name="dates" required><br>
+        Travel Method: <input type="text" name="travel_method" required><br>
+        Notes: <textarea name="notes"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="bottom-buttons">
+        <a class="button" href="{{ url_for('home') }}">My Plans</a>
+        <a class="button" href="{{ url_for('create_plan') }}">Create a Plan</a>
+        <a class="button" href="{{ url_for('recommendations_page') }}">Recommended Plans</a>
+    </div>
+</body>
+</html>
