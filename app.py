@@ -21,9 +21,9 @@ try:
 except Exception as e:
     print(e)
 
-db = client['sample_supplies']
+db = client['project2-database']
 
-travels = db['travels']
-travels.insert_one({'name': 'Lily', 'country': 'USA', 'itinerary': ['NYC', 'LA', 'SF']})
+travels = db['travel-plans']
+travels.insert_one({'plan_name':'Trip to Ibiza', 'dates':'10-19-23 -- 10-27-23', 'travel_method':'plane', 'notes':'bring sunscreen'})
 print(travels.find_one())
 print('pls')
