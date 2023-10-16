@@ -4,7 +4,7 @@ A little exercise to build a web application following an agile development proc
 
 ## Product vision statement
 
-See instructions. Delete this line and place the Product Vision Statement here.
+Our vision is to revolutionize the way travelers experience the world, by providing a personalized and seamless travel planning experience. 
 
 ## User stories
 
