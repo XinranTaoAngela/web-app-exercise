@@ -10,6 +10,12 @@
 
     <a href="{{ url_for('user_info') }}" class="user-info-button">User Info</a>
 
+    <!-- Search bar -->
+    <form action="{{ url_for('home') }}" method="post">
+        <input type="text" name="search_query" placeholder="Search your plans...">
+        <button type="submit">Search</button>
+    </form>
+    
     <h2>Your Plans</h2>
     <ul>
         {% for plan in plans %}

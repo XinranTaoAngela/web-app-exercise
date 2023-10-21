@@ -13,6 +13,19 @@
     <!-- Display user information here. Placeholder for now. -->
     <p>Placeholder for user information.</p>
 
+    <h2>Most Frequent Mode of Travel:</h2>
+    <p>{{ most_frequent_travel }}</p>
+
+    <h3>Delete a Plan</h3>
+    <form action="{{ url_for('delete_plan') }}" method="post">
+        <select name="plan_to_delete">
+            {% for plan in plans %}
+                <option value="{{ plan.name }}">{{ plan.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Delete Plan">
+    </form>
+
     <div class="bottom-buttons">
         <a class="button" href="{{ url_for('home') }}">My Plans</a>
         <a class="button" href="{{ url_for('create_plan') }}">Create a Plan</a>

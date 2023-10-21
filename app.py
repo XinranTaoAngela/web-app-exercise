@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from collections import Counter
 
 app = Flask(__name__)
 
@@ -13,8 +14,13 @@ recommendations = [
     {"name": "Mars 3-Day Trip", "dates": "Future Date", "travel_method": "Spacecraft"},
 ]
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+    query = None
+    if request.method == 'POST':
+        query = request.form.get('search_query').lower()
+        filtered_plans = [plan for plan in plans if query in plan['name'].lower()]
+        return render_template('home.html', plans=filtered_plans)
     return render_template('home.html', plans=plans)
 
 @app.route('/create-plan', methods=['GET', 'POST'])
@@ -58,8 +64,16 @@ def recommendations_page():
 
 @app.route('/user-info')
 def user_info():
-    # Implementation for displaying user info
-    return render_template('user_info.html')
+    travel_methods = [plan['travel_method'] for plan in plans]
+    most_common = Counter(travel_methods).most_common(1)[0][0] if travel_methods else "N/A"
+    return render_template('user_info.html', most_frequent_travel=most_common, plans=plans)
+
+@app.route('/delete-plan', methods=['POST'])
+def delete_plan():
+    plan_name = request.form.get('plan_to_delete')
+    global plans
+    plans = [plan for plan in plans if plan['name'] != plan_name]
+    return redirect(url_for('user_info'))
 
 if __name__ == "__main__":
     app.run(debug=True)
