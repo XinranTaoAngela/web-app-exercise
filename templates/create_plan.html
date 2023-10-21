@@ -12,7 +12,8 @@
 
     <form action="{{ url_for('create_plan') }}" method="post">
         Plan Name: <input type="text" name="plan_name" required><br>
-        Dates: <input type="text" name="dates" required><br>
+        Departure Date: <input type="date" name="dep_date" required><br>
+        Return Date: <input type="date" name="ret_date" required><br>
         Travel Method: <input type="text" name="travel_method" required><br>
         Notes: <textarea name="notes"></textarea><br>
         <input type="submit" value="Submit">

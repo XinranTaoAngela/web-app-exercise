@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
@@ -13,20 +14,46 @@ recommendations = [
     {"name": "Mars 3-Day Trip", "dates": "Future Date", "travel_method": "Spacecraft"},
 ]
 
+# Connect to MongoDB
+client = MongoClient()
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+db = client['project2-database']
+collection = db['travel-plans']
+
+# get all documents from the collection
+all_plans = []
+for post in collection.find():
+    all_plans.append(post) # test
+
+# print('does',all_plans)
+
+
 @app.route('/')
 def home():
-    return render_template('home.html', plans=plans)
+    all_plans = []
+    for post in collection.find():
+        all_plans.append(post) # test
+
+    if request.method == 'POST':
+        collection.find_one({"plan_name": request.form.get("plan_name")})
+
+    return render_template('home.html', plans=all_plans)
 
 @app.route('/create-plan', methods=['GET', 'POST'])
 def create_plan():
     if request.method == 'POST':
         # Capture form data and add to plans list (for simplicity)
-        plans.append({
-            "name": request.form.get("plan_name"),
-            "dates": request.form.get("dates"),
-            "travel_method": request.form.get("travel_method"),
-            "notes": request.form.get("notes"),
-        })
+        collection.insert_one({"plan_name": request.form.get("plan_name"),
+        "dep_date": request.form.get("dep_date"),
+        "ret_date": request.form.get("ret_date"),
+        "travel_method": request.form.get("travel_method"),
+        "notes": request.form.get("notes")})
+        
         return redirect(url_for('home'))
     return render_template('create_plan.html')
 
@@ -59,6 +86,8 @@ def recommendations_page():
 @app.route('/user-info')
 def user_info():
     # Implementation for displaying user info
+    if request.method == 'POST':
+        collection.find_one_and_delete({"plan_name": request.form.get("plan_name")})
     return render_template('user_info.html')
 
 if __name__ == "__main__":

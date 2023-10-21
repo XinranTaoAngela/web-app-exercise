@@ -14,7 +14,10 @@
     <ul>
         {% for plan in plans %}
             <!-- Corrected the link here -->
-            <li><a href="{{ url_for('edit_plan', plan_id=loop.index0) }}">{{ plan.name }} ({{ plan.dates }})</a></li>
+            <li><a href="{{ url_for('edit_plan', plan_id=loop.index0) }}">{{ plan.plan_name }} via {{ plan.travel_method }} ({{ plan.dep_date }})
+                ({{ plan.ret_date }})
+                ({{ plan.notes }})
+            </a></li>
         {% endfor %}
     </ul>
 
