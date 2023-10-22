@@ -57,16 +57,16 @@ def create_plan():
         return redirect(url_for('home'))
     return render_template('create_plan.html')
 
-@app.route('/edit-plan/<int:plan_id>', methods=['GET', 'POST'])
-def edit_plan(plan_id):
-    plan = plans[plan_id]
-    if request.method == 'POST':
-        # Update plan details
-        plan["name"] = request.form.get("plan_name")
-        plan["dates"] = request.form.get("dates")
-        plan["travel_method"] = request.form.get("travel_method")
-        plan["notes"] = request.form.get("notes")
-        return redirect(url_for('home'))
+@app.route('/edit-plan', methods=['GET', 'POST'])
+def edit_plan():
+    # plan = plans[plan_id]
+    # if request.method == 'POST':
+    #     # Update plan details
+    #     plan["name"] = request.form.get("plan_name")
+    #     plan["dates"] = request.form.get("dates")
+    #     plan["travel_method"] = request.form.get("travel_method")
+    #     plan["notes"] = request.form.get("notes")
+    #     return redirect(url_for('home'))
     return render_template('edit_plan.html', plan=plan)
 
 @app.route('/create-plan-days', methods=['GET', 'POST'])
