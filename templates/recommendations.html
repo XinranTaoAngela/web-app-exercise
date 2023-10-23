@@ -10,9 +10,9 @@
 
     <a href="{{ url_for('user_info') }}" class="user-info-button">User Info</a>
 
-    <ul>
+    <ul style="text-align: center;">
         {% for rec in recommendations %}
-            <li>{{ rec.name }} ({{ rec.dates }}, {{ rec.travel_method }})</li>
+            <li>{{ rec.plan_name }} ({{ rec.dep_date }} {{ rec.arr_date }} {{ rec.travel_method }} {{ rec.notes }})</li>
         {% endfor %}
     </ul>
 

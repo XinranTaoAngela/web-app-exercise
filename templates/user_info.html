@@ -10,8 +10,24 @@
 
     <a href="{{ url_for('user_info') }}" class="user-info-button">User Info</a>
 
-    <!-- Display user information here. Placeholder for now. -->
-    <p>Placeholder for user information.</p>
+    
+    <div style="text-align: center;">
+        <h2>Most Frequent Mode of Travel:</h2>
+        <h1 style="color: purple;">{{ most_frequent_travel }}</p>
+    </div>
+    
+    <div style="text-align: center;">
+        <h3>Delete a Plan</h3>
+        <form action="{{ url_for('delete_plan') }}" method="POST">
+            <select name="plan_to_delete">
+                {% for plan in plans %}
+                    <option value="{{ plan.plan_name }}">{{ plan.plan_name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Delete Plan">
+        </form>    
+    </div>
+    
 
     <div class="bottom-buttons">
         <a class="button" href="{{ url_for('home') }}">My Plans</a>
