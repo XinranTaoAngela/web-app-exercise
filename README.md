@@ -9,7 +9,11 @@ A little exercise to build a web application following an agile development proc
 - run app.py to view the flask app
 
 # Demo video
-[Demo Video]("/Users/luke/Library/CloudStorage/OneDrive-nyu.edu/SWE/2-web-app-exercise-stuytown/stuy_town_demo_video.mov")
+
+
+https://github.com/software-students-fall2023/2-web-app-exercise-stuytown/assets/29547965/fd6e4fec-143b-4000-827f-1dc3f818911e
+
+
 
 
 ## Product vision statement
