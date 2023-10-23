@@ -97,7 +97,6 @@ def create_plan():
     return render_template('create_plan.html')
 
 
-
 @app.route('/edit-plan', methods=['GET', 'POST'])
 def edit_plan():
     all_plans = []
@@ -106,32 +105,37 @@ def edit_plan():
 
     if request.method == 'POST':
         edit_plan = request.form.get("plan_to_edit")
+        plan_name = request.form.get("plan_name")
         dep_date = request.form.get("dep_date")
         ret_date = request.form.get("ret_date")
         travel_method = request.form.get("travel_method")
         notes = request.form.get("notes")
-        update_data = {}
 
-        collection.find_one_and_update({"plan_name": edit_plan}, {"$set": {dep_date: dep_date}})
+        doc_to_edit = collection.find_one({"plan_name": edit_plan})
+        if dep_date == "":
+            dep_date = doc_to_edit["dep_date"]
+        if ret_date == "":
+            ret_date = doc_to_edit["ret_date"]
+        if travel_method == "":
+            travel_method = doc_to_edit["travel_method"]
+        if notes == "":
+            notes = doc_to_edit["notes"]
         
-        # if dep_date:
-        #     update_data["dep_date"] = dep_date
 
-        # if ret_date:
-        #     update_data["ret_date"] = ret_date
+        doc = {
+            "plan_name": plan_name, 
+            "dep_date": dep_date,
+            "ret_date": ret_date,
+            "travel_method": travel_method,
+            "notes": notes,
+        }
 
-        # if travel_method:
-        #     update_data["travel_method"] = travel_method
+        print(doc)
 
-        # if notes:
-        #     update_data["notes"] = notes
+        collection.update_one({"plan_name": edit_plan}, {"$set": doc})
 
-        # if update_data:
-        #     collection.find_one_and_update({"plan_name": edit_plan}, {"$set": update_data})
-        # if request.form.get("dep_date") != "":
-        #     collection.find_one_and_update({"plan_name": edit_plan}, {"$set": {"dep_date": request.form.get("dep_date")}})
-        # collection.find_one_and_update({"plan_name": edit_plan})
         return redirect(url_for('home'))
+    
     return render_template('edit_plan.html', plans=all_plans)
 
 @app.route('/create-plan-days', methods=['GET', 'POST'])
