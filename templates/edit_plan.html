@@ -6,17 +6,34 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Edit Plan: {{ plan.plan_name }}</h1>
+    <h1>Edit Plan: </h1>
 
-    <a href="{{ url_for('user_info') }}" class="user-info-button">User Info</a>
+    
+    <!-- <form action="{{ url_for('edit_plan') }}" method="post">
+        <select name="plan_to_delete">
+            {% for plan in plans %}
+                <option value="{{ plan.plan_id }}">{{ plan.plan_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Edit this Plan">
+    </form> -->
 
     <form action="{{ url_for('edit_plan', plan_id=plan_id) }}" method="post">
-        Plan Name: <input type="text" name="plan_name" value="{{ plan.name }}" required><br>
-        Dates: <input type="text" name="dates" value="{{ plan.dates }}" required><br>
-        Travel Method: <input type="text" name="travel_method" value="{{ plan.travel_method }}" required><br>
-        Notes: <textarea name="notes">{{ plan.notes }}</textarea><br>
+        <label for="plans">Choose a plan:</label>
+        <select name="plan_to_edit">
+            {% for plan in plans %}
+                <option value="{{ plan.plan_name }}">{{ plan.plan_name }}</option>
+            {% endfor %}
+        </select> <br>
+        Plan Name: <input type="text" name="plan_name" ><br>
+        
+        Departure Date: <input type="date" name="dep_date" ><br>
+        Return Date: <input type="date" name="ret_date" ><br>
+        Travel Method: <input type="text" name="travel_method" ><br>
+        Notes: <textarea name="notes"></textarea><br>
         <input type="submit" value="Update">
-    </form>
+    </form> 
+
 
     <div class="bottom-buttons">
         <a class="button" href="{{ url_for('home') }}">My Plans</a>
