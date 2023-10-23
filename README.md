@@ -14,11 +14,12 @@ A little exercise to build a web application following an agile development proc
 https://github.com/software-students-fall2023/2-web-app-exercise-stuytown/assets/29547965/fd6e4fec-143b-4000-827f-1dc3f818911e
 
 
-
-
 ## Product vision statement
 
 Our vision is to revolutionize the way travelers experience the world, by providing a personalized and seamless travel planning experience. 
+
+## Figma Wireframe
+[Figma Wireframe](https://www.figma.com/file/EarscH4ytrWK8BirCvTeii/travel-planner?type=design&node-id=0%3A1&mode=design&t=wNXGkkXhTFyiHeYR-1)
 
 ## User stories
 1. As a wholesome dad, I want the ability to create an itinerary with plans for each day
