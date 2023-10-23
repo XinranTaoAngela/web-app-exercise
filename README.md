@@ -8,6 +8,10 @@ A little exercise to build a web application following an agile development proc
 - run db_test.py to populate the database
 - run app.py to view the flask app
 
+# Demo video
+[Demo Video]("/Users/luke/Library/CloudStorage/OneDrive-nyu.edu/SWE/2-web-app-exercise-stuytown/stuy_town_demo_video.mov")
+
+
 ## Product vision statement
 
 Our vision is to revolutionize the way travelers experience the world, by providing a personalized and seamless travel planning experience. 

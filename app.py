@@ -112,6 +112,8 @@ def edit_plan():
         notes = request.form.get("notes")
 
         doc_to_edit = collection.find_one({"plan_name": edit_plan})
+        if plan_name == "":
+            plan_name = doc_to_edit["plan_name"]
         if dep_date == "":
             dep_date = doc_to_edit["dep_date"]
         if ret_date == "":
@@ -154,6 +156,9 @@ def recommendations_page():
 
 @app.route('/user-info')
 def user_info():
+    all_plans = []
+    for post in collection.find():
+        all_plans.append(post) # test
     # Implementation for displaying user info
     travel_methods = [plan['travel_method'] for plan in all_plans]
     most_common = Counter(travel_methods).most_common(1)[0][0] if travel_methods else "N/A"
